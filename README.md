@@ -1,4 +1,4 @@
-# MatrixWave---A-Simple-Implementation
+# MatrixWave, a simple implement
 
 
 Description
