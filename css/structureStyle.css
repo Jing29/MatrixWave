@@ -1,0 +1,114 @@
+body{
+	font-family:Microsoft Yahei;
+}
+
+
+#controlPanel{
+	float:left;
+	position:absolute;
+	background:rgb(224, 224, 224);
+	top:2%;
+	left:1%;
+	width:14%;
+	border:solid 1px rgb(152, 152, 152);
+	border-radius: 5px;
+}
+
+#controlPanelIn{
+	position:relative;
+	margin-bottom:5%;
+	margin-top:5%;
+	left:5%;
+	top:2%;
+	bottom:2%;
+	right:5%;
+	width:90%;
+}
+
+#matrixWave{
+	float:left;
+	position:absolute;
+	top:2%;
+	left:15%;
+	width:64%;
+	height:98%;
+	border:solid 1px black;
+	border-radius:5px;
+	overflow:auto;
+}
+
+#legendPanel{
+	float:left;
+	position:absolute;
+	top:2%;
+	left:79%;
+	width:20%;
+	height:98%;
+	border:solid 1px black;
+	border-radius:5px;
+}
+
+#nodeGroupLabel{
+	position:relative;
+}
+
+#nodeGroupSvgDiv{
+	position:relative;
+	overflow-y:auto;
+}
+
+.control{
+	position:relative;
+	width:100%;
+ }
+
+ .h1-div{
+ 	font-size:18px;
+ 	font-weight: 600;
+ }
+
+ select{
+ 	padding-top:2px;
+ 	padding-bottom:2px;
+ 	padding-left:3px;
+ 	background-color: whitesmoke;
+ 	white-space:nowrap;
+ 	text-overflow: ellipsis;
+ 	overflow:hidden;
+ }
+
+ td{
+ 	white-space:nowrap;
+ 	text-overflow: ellipsis;
+ 	overflow:hidden;
+ }
+ 
+ input{
+ 	padding-left:3px;
+ }
+
+ 
+.loading{
+	position:absolute;
+	top:35%;
+	width:100%;
+	height:30%;
+	background-color:whitesmoke;
+}
+
+.logo{
+	position:relative;
+	left:40%;
+	top:20%;
+	font-size: 25px;
+}
+
+.icon-selected{
+	opacity:1;
+	background-color:white;
+}
+
+.icon-unselected{
+	opacity: 0.6;
+	background-color:whitesmoke;
+}

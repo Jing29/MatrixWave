@@ -1,0 +1,46 @@
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  font-family: Microsoft Yahei;
+  font-size:10px;
+  padding-left: 12px;
+  padding-right:2px;
+  padding-top:8px;
+  padding-bottom:2px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 6px;
+  width:180px;
+  /* line-height:15px; */ /*设置行距*/
+  z-index:3;
+}
+
+.unselected{
+  opacity:0.1;
+}
+
+.clickUnselected{
+  opacity: 0.1;
+}
+
+.clickStrokeColor{
+  stroke:rgb(252, 98, 3);
+}
+
+.nodeLabelShow{
+  opacity:1;
+}
+
+.nodeLabelUnshow{
+  opacity:0;
+}
+
+.matrixGridShow{
+  stroke:black;
+  stroke-opacity:0.8;
+  stroke-width:0.3px;
+}
+
+.nodeGroupUnselected{
+  opacity:0.5;
+}

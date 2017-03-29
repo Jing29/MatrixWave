@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv='content-type' content='text/html'; charset='UTF-8' />
+    <title>MatrixWave</title>
+    <link rel='stylesheet' href='css/structureStyle.css' />
+    <link rel='stylesheet' href='css/matrixwave.css' />
+    <link rel='stylesheet' href='css/bootstrap.css' />
+    <link rel='stylesheet' href='css/font-awesome.css' />
+    <link rel ='stylesheet' href = 'css/jquery-ui-1.10.4.custom.min.css'/>
+
+    <script src='lib/jquery.min.js'></script>
+    <script src='lib/d3.min.js'></script>
+    <script src='lib/bootstrap.min.js'></script>
+    <script src = 'lib/jquery-ui-1.10.4.custom.min.js'></script>
+    <script src = 'lib/tooltip.js'></script>
+    <script src = 'lib/svg-pan-zoom.min.js'></script>
+    <script src = "lib/saveSvgAsPng.js"></script>
+</head>
+<body>
+    <div class="loading">
+        <div class="back"></div>
+        <div class="logo">
+            <i class="fa fa-spinner fa-spin fa-3x"></i>
+            <span> 加载中 ...</span>
+        </div>
+     </div>
+
+	<div id = "controlPanel">
+	<div id = "controlPanelIn">
+		<div id = "dataset" class = "control">
+		<div class = "h1-div">Datasets</div>
+		<div id = "datasetSelection1">
+		<select id = "datasetSelect1" style = "width:100%" onchange = "selectDatasetA(this.options[this.options.selectedIndex].value)">
+			<!-- <option>Hello! </option> -->
+		</select>
+		</div>
+		<div id = "datasetSelection2" style = "margin-top:4px">
+		<select id = "datasetSelect2" style = "width:100%" onchange = "selectDatasetB(this.options[this.options.selectedIndex].value)">
+			<!-- <option>Bye! </option> -->
+		</select>
+		</div> 
+		</div>
+
+		<div id = "filter" class = "control" style = "margin-top:4%">
+		<div class = "h1-div">Filters</div>
+		<div id = "nodeSelection">
+		<div id = "nodeLegend">
+
+		<table width = "100%" style = "margin-bottom:4px">
+		    <tr id ="nodeFilter">
+		        <td width = "25%">Node</td>
+		    	<td colspan="3">
+		    	<input type = "text" name = "nodeFilter" id = "nodeFilterValue" style = "width:75%" value = "75" />
+		    	</td>
+		    </tr>
+		    <tr>
+		    <td colspan="3">
+		    <div style = "margin-top:6px; margin-bottom: 3px;" id = "nodeFilterBar"></div>
+		    </td>
+		    </tr>
+		</table>
+
+		</div>
+		<div></div>
+		</div>
+
+		<div id = "linkSelection">
+		<div id = "linkLegend">
+		
+		<table width = "100%" style = "margin-bottom:4px">
+		    <tr id ="linkFilter">
+		        <td width = "25%">Link</td>
+		    	<td colspan="3">
+		    	<input type = "text" name = "linkFilter" id = "linkFilterValue" style = "width:75%" value = "75" />
+		    	</td>
+		    </tr>
+		    <tr>
+		    <td colspan="3">
+		    	<div style = "margin-top:6px; margin-bottom: 3px" id = "linkFilterBar"></div>
+		    </td>
+		    </tr>
+		</table>
+
+		</div>
+		<div></div>
+		</div>
+
+		<div id = "stepSelection">
+		<div id = "stepLegend">
+
+        <table width = "100%" style = "margin-bottom:4px">
+		    <tr id ="stepFilter">
+		        <td width = "25%">Step</td>
+		    	<td colspan="3">
+		    	<input type = "text" name = "stepFilter1" id = "stepFilter1" style = "width:30%" value = "1" /> ... 
+		    	<input type = "text" name = "stepFilter2" id = "stepFilter2" style = "width:30%" value = "6" />
+		    	</td>
+		    </tr>
+		    <tr>
+		    <td colspan="3">
+		    	<div style = "margin-top:6px; margin-bottom: 3px" id = "stepFilterBar"></div>
+		    </td>
+		    </tr>
+		</table>
+
+		</div>
+		<div></div>
+		</div>
+
+		</div>
+
+		<div id = "visualization" class = "control" style = "margin-top:4%">
+		<div class = "h1-div">Visualization</div>
+		    <table width = "100%" style = "margin-bottom:4px">
+		    <tr id = "nodeVis">
+		    	<td width = "25%">Node</td>
+		    	<td colspan="3">
+		    	<select id = "nodeSelect" style = "width:75%" onchange = "nodeVisStyleChange(this.options[this.options.selectedIndex].value)">
+		    	    <option value = "false">nodeVis1</option>
+		    	    <option value = "true">nodeVis2</option>
+		    	</select>
+		    	<!-- <select id = "nodeSelect" style = "width:75%">
+		    	   <option value = "Rel">Rel</option>       
+		    				    </select> -->
+		    	</td>
+		    </tr>
+		    </table>
+		    <table width = "100%" style = "margin-bottom:4px">
+		    <tr id ="linkVis">
+		       <td width = "25%">Link</td>
+		    	<td colspan="3">
+		    	<select id = "linkSelect" style = "width:75%" onchange = "linkVisStyleChange(this.options[this.options.selectedIndex].value)">
+		    			       <option value = "false">nodeVis1 </option>
+		    			       <option value = "true">nodeVis2</option>
+		    	</select>
+		        <!-- <select id = "linkSelect" style = "width: 75%">
+		              <option value = "Rel2">Rel2</option>
+		        </select> -->
+		    	</td>
+		    </tr>
+		    </table>
+
+		    <table width = "100%" style = "margin-bottom:4px" >
+		    <tr id ="colorVis">
+		       <td width = "25%">Color</td>
+		    	<td colspan="3">
+		    	<select id = "colorSelect" style = "width:75%" onchange = "colorSelectionChange(this.options[this.options.selectedIndex].value)">
+		    			       <option value = "0">purple-orange </option>
+		    			       <option value = "1">orange-purple</option>
+		    			    </select>
+		    	</td>
+		    </tr>
+		    </table>
+		    <table width = "100%" style = "margin-bottom:4px">
+		    <tr id ="orderVis">
+		       <td width = "25%">Order</td>
+		    	<td colspan="3">
+		    	<select id = "orderSelect" style = "width:75%" onchange = "orderSelectionChange(this.options[this.options.selectedIndex].value)">
+		    			       <option value = "any">Any </option>
+		    			       <option value = "alphabetion">Alphabetion</option>
+		    			       <option value = "volume">Volume</option>
+
+		    			       <option value = "difference">Difference</option>
+		    			    </select>
+		    	</td>
+		    </tr>
+		    </table>
+
+		    <table width = "50%" style = "margin-bottom:4px">
+		    <tr id = "labelVis">
+		         <td  >
+		            <a class = "btn btn-default btn-nodeLabelShow" herf = "#"><i class = "fa fa-sort fa-fw"></i></a>
+		         </td>
+		         <td  >
+		            <a class = "btn btn-default btn-matrixGridShow" herf = "#"><i class = "fa fa-table fa-fw"></i></a>
+		         </td>
+		         <td  > 
+		         	<a class = "btn btn-default btn-pictureSave" herf = "#"><i class = "fa fa-file-o fa-fw"></i></a>
+		         </td>
+		         <td  >
+		         	<a class = "btn btn-default btn-specificVolumeShow" herf = "#"><i class = "fa fa-random fa-fw"></i></a>
+		         </td>
+		         <!-- <td  >
+		         	<a class = "btn btn-default" herf = "#"><i class = "fa fa-exchange fa-fw"></i></a>
+		         </td> -->
+		    </tr>
+		    </table>
+		</div>
+
+		<div id = "search"  class = "control" style = "margin-top:4%">
+		<div class = "h1-div">Search</div>
+		  <div id = "searchText">
+		  <form  id = "searchForm">
+		  	 <input id = "searching"  type = "text" name = "searchText" style = "width:100%" value = "" placeholder = "searching node by id"  onkeydown="searchKeyDown(event.keyCode)" />
+		  </form>
+
+		  </div>  
+		</div>
+	</div>
+	</div>
+	</div>
+	<div id = "matrixWave">
+	</div>
+	<div id = "legendPanel">
+	<div id = "labelPanel">
+	<table width = "97%" style = "margin-top:10px; margin-left:5px; margin-right:15px" align = "center">
+	<tr>
+	    <td></td>
+	    <td colspan="3">
+	    <strong>Node encodings</strong>
+	    </td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td align = "center">1</td>
+	    <td colspan = "3">
+	    <div id = "nodeLabel"></div>
+	    </td>
+	    <td id = "nodeMaxText" align = "center"></td>
+	</tr>
+	<tr>
+	    <td align = "center">-100%</td>
+	    <td colspan="3">
+	    <div id = "nodeColorLabel"></div>
+	    </td>
+	    <td align = "center">100%</td>
+	</tr>
+	<tr>
+	    <td></td>
+	    <td colspan="3">
+	    <strong>Link encodings</strong>
+	    </td>
+	    <td></td>
+	</tr>
+	<tr>  
+        <td align = "center">-100%</td>
+        <td colspan="3">
+        	<div id = "linkColorLabel"></div>
+        </td>
+        <td align = "center">100%</td>
+	</tr>
+	<tr>
+	   <td align = "center">1</td>
+	   <td colspan="3">
+	   	  <div id = "linkLabel"></div>
+	   </td>
+	   <td id = "linkMaxText" align = "center"></td>
+	</tr>
+	</table>
+	</div>
+
+	<div id = "nodeGroupLabel" >
+	    <h4>Node Groups</h4>
+	    <div id = "nodeGroupSvgDiv">
+	    </div>
+	</div>
+	</div>
+
+<!-- <script type = "text/template" id = "node-tooltip-template">
+	<p>Pages: <%= name %></p>
+	<p>Visitors: <%= setAVolume %> <%= setBVolume %> (<%= volumeRatio %>)</p>
+</script> -->
+
+<script src = 'js/Bar.js'></script>
+<script src = 'js/dataDeal.js'></script>
+<script src = 'js/matrix.js'></script>
+<script src = 'js/matrix1.js'></script>
+<script src = 'js/matrix2.js'></script>
+<script src = 'js/matrix3.js'></script>
+<script src = 'js/matrix4.js'></script>
+<script src = 'js/iconPanel.js'></script>
+<script src = 'js/init.js'></script>
+<script src = "js/nodeGroup.js"></script>
+
+</body>
+</html>
